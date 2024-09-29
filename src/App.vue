@@ -1,26 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <h1>Cycle de vie d'un composant Vue</h1>
+    
+    <!-- Bouton pour créer le composant -->
+    <button v-if="!afficherComposant" @click="afficherComposant = true">Créer le composant</button>
+    
+    <!-- Affiche le composant si afficherComposant est vrai -->
+    <CycleDeVie v-if="afficherComposant" @destroy="afficherComposant = false" />
+    
+    <!-- Bouton pour détruire le composant dans le composant enfant -->
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CycleDeVie from './components/CycleDeVie.vue';
 
 export default {
-  name: 'App',
+  data() {
+    return {
+      afficherComposant: false, // Le composant n'est pas affiché par défaut
+    };
+  },
   components: {
-    HelloWorld
+    CycleDeVie
   }
-}
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
